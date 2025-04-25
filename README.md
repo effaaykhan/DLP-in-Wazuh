@@ -3,8 +3,10 @@
 ## Windows 
   - Enable Windows Security Policies (GPO) — This is done on the Windows Agent (If you're using windows home edition then you can skip this step)
     ```
-    Tools → Local Security policy → Local Policies → Audit Policies From here we can set the Audit Object Access policy to log successes and failures
+    Tools → Local Security policy → Local Policies → Audit Policies 
     ```
+    - From here we can set the Audit Object Access policy to log successes and failures
+      
   - Setting up the directory we want to monitor
     - In order for us to test this, we will want to create a test directory and set the permissions. As an example you can create a directory in ```C:\Users\<Username>\Downloads\tmp```. From here we will 
       set the windows security policy to audit this folder. Note- Selecting “Everyone” as the principal ensures the policy is active for every user that attempts to access the file.
