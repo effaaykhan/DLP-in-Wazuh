@@ -1,7 +1,7 @@
 # DLP-in-Wazuh
 
-## Windows Enterprise/Pro
-  - Enable Windows Security Policies (GPO) — This is done on the Windows Agent
+## Windows 
+  - Enable Windows Security Policies (GPO) — This is done on the Windows Agent (If you're using windows home edition then you can skip this step)
     ```
     Tools → Local Security policy → Local Policies → Audit Policies From here we can set the Audit Object Access policy to log successes and failures
     ```
