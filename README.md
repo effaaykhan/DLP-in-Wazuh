@@ -2,6 +2,10 @@
 
 ## Windows 
   - Enable Windows Security Policies (GPO) — This is done on the Windows Agent (If you're using windows home edition then you can skip this step)
+  - You can enable secpol.msc in windows home edition by typing the following command in the cmd running as administrator:
+    ```
+    DISM /Online /Add-Capability /CapabilityName:Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0
+    ```
     ```
     Tools → Local Security policy → Local Policies → Audit Policies 
     ```
