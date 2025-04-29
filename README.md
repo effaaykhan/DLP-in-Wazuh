@@ -74,3 +74,8 @@ AuditPol /get /subcategory:"Plug and Play Events"
 ```
 AuditPol /set /subcategory:"Plug and Play Events" /success:enable
 ```
+```
+auditpol /set /subcategory:"Removable Storage" /success:enable /failure:enable
+auditpol /set /subcategory:"Plug and Play Events" /success:enable /failure:enable
+auditpol /set /subcategory:"File System" /success:enable /failure:enable
+```
