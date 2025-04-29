@@ -66,3 +66,11 @@
  - Create a file or modify anything under the previously monitored file and everything will be visible on dashboard
 
   ![image](https://github.com/user-attachments/assets/8616125a-3747-432c-b4c9-2ffbff57dd6d)
+
+## Enable Plug and Play Events Logging
+```
+AuditPol /get /subcategory:"Plug and Play Events"
+```
+```
+AuditPol /set /subcategory:"Plug and Play Events" /success:enable
+```
