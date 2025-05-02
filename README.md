@@ -67,7 +67,9 @@
 
   ![image](https://github.com/user-attachments/assets/8616125a-3747-432c-b4c9-2ffbff57dd6d)
 
-## Enable Plug and Play Events Logging
+# USB Detection
+## Wazuh-Agent
+### Enable Plug and Play Events Logging
 ```
 AuditPol /get /subcategory:"Plug and Play Events"
 ```
@@ -79,3 +81,36 @@ auditpol /set /subcategory:"Removable Storage" /success:enable /failure:enable
 auditpol /set /subcategory:"Plug and Play Events" /success:enable /failure:enable
 auditpol /set /subcategory:"File System" /success:enable /failure:enable
 ```
+```
+wevtutil set-log "Microsoft-Windows-DriverFrameworks-UserMode/Operational" /enabled:true
+```
+
+In ```C:\Program Files (x86)\ossec-agent\ossec.conf``` file add the following:
+```
+<localfile>
+  <log_format>eventchannel</log_format>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+</localfile>
+
+<localfile>
+  <log_format>eventchannel</log_format>
+  <location>Microsoft-Windows-DriverFrameworks-UserMode/Operational</location>
+</localfile>
+```
+
+## Wazuh-Server
+### Add the following rule in /var/ossec/etc/rules/local_rules.xml
+```
+<group name="windows-usb-detect,">
+  <rule id="111000" level="7">
+    <if_sid>60227</if_sid>
+    <field name="win.system.eventID">^6416$</field>
+    <match>USBSTOR\\Disk</match>
+    <options>no_full_log</options>
+    <description>Windows: A PNP device $(win.eventdata.deviceDescription) was connected to $(win.system.computer)</description>
+  </rule>
+</group>
+```
+
+### Visualization
+![image](https://github.com/user-attachments/assets/6c76a45d-cf48-4be6-b3d4-253ed59a062a)
